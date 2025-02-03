@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Meseros</title>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .tabla-meseros {
+            width: 45%;
+            border-collapse: collapse;
+        }
+        .tabla-meseros th, .tabla-meseros td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-meseros th {
+            background-color: #f4f4f4;
+        }
+        .chart-container {
+            width: 40%;
+        }
+        #chartMeseros {
+            width: 100%;
+            height: 250px; /* Reduce la altura del gráfico */
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estadísticas de Meseros</h1>
+    <form method="get">
+        <label for="fecha_inicio">Fecha Inicio:</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+        <label for="fecha_fin">Fecha Fin:</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+        <button type="submit">Generar</button>
+    </form>
+
+    <h2>Pedidos Atendidos</h2>
+    <div class="container">
+        <!-- Tabla de meseros -->
+        <table class="tabla-meseros">
+            <thead>
+                <tr>
+                    <th>Nombre del Mesero</th>
+                    <th>Pedidos Atendidos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mesero in meseros %}
+                <tr>
+                    <td>{{ mesero.mesero__nombre }}</td>
+                    <td>{{ mesero.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Contenedor del gráfico -->
+        <div class="chart-container">
+            <canvas id="chartMeseros"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById('chartMeseros').getContext('2d');
+            const data = {
+                labels: [{% for mesero in meseros %}"{{ mesero.mesero__nombre }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Pedidos Atendidos',
+                    data: [{% for mesero in meseros %}{{ mesero.total }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'pie', /* Gráfico de pastel */
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Pedidos Atendidos por Mesero'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

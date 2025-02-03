@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+
+</head>
+<body>
+<header>
+    <h1>REPORTES</h1>
+    <h2>Reportes Disponibles</h2>
+    <form method="get" action="{% url 'reporte_pdf' %}">
+    <label for="fecha_inicio">Fecha Inicio:</label>
+    <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+    <label for="fecha_fin">Fecha Fin:</label>
+    <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+    <button type="submit">Generar</button>
+</form>
+
+</header>
+
+<div class="container">
+    <ul class="reportes-list">
+        <li class="reporte-item">
+            <div class="action-buttons">
+                <button onclick="location.href{% url 'reporte_pdf' %}">Exportar PDF</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    function updateTime() {
+        const timeDisplay = document.getElementById("current-time");
+        const now = new Date();
+        timeDisplay.textContent = now.toLocaleTimeString();
+    }
+
+    setInterval(updateTime, 1000);
+</script>
+</body>
+</html>

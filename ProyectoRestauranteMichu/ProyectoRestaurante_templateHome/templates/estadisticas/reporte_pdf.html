@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Estadísticas</title>
+
+</head>
+<body>
+    <h1>Reporte de Estadísticas</h1>
+    <h2>Rango de Fechas: {{ fecha_inicio }} - {{ fecha_fin }}</h2>
+
+   <h3>Mejores Meseros</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Pedidos Atendidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mesero in meseros %}
+            <tr>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ mesero.mesero__nombre }}</td>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ mesero.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Mesas Más Usadas</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Ventas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mesa in mesas %}
+            <tr>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ mesa.mesa__codigo }}</td>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ mesa.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Productos Más Vendidos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad Vendida</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ producto.producto__nombre }}</td>
+                <td style="padding: 6px; border: 1px solid #ddd;">{{ producto.total_vendido }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Ventas Totales</h3>
+    <p>Total Ventas: {{ total_ventas }}</p>
+
+</body>
+</html>

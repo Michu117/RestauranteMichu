@@ -1,0 +1,224 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Banner negro semitransparente */
+.banner {
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea todo al centro verticalmente */
+    padding: 15px 40px; /* Reduce un poco el padding superior e inferior */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    position: fixed;
+    top: 10px; /* Debajo del banner */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 80px; /* Ajusta la altura del header */
+}
+
+/* Ajustar logo */
+header .logo {
+    display: flex;
+    align-items: center; /* Centra logo y texto */
+}
+
+/* Logo más grande y sin bordes redondeados */
+header .logo img {
+    height: 120px; /* Ajusta el tamaño del logo */
+    border-radius: 0; /* Sin bordes redondeados */
+}
+
+/* Alinear el texto con los botones */
+header .logo .restaurant-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: white; /* Texto en blanco */
+    margin-left: 15px;
+    margin-top: 5px; /* Ajusta este valor si es necesario */
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Sección Hero ocupa toda la pantalla */
+.hero {
+    position: relative;
+    height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Texto en blanco */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre toda la pantalla */
+    z-index: -1; /* La imagen se coloca detrás del contenido */
+    filter: brightness(0.6); /* Oscurece la imagen para mejorar la legibilidad */
+}
+
+/* Estilo para el título 'Iniciar Sesión' */
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: white; /* Letras blancas */
+    text-align: center; /* Centrado horizontal */
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Formulario de login */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el formulario */
+    border-radius: 15px; /* Bordes más redondeados para un toque más animalístico */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Sombra sutil para el cuadro */
+    margin-top: 80px; /* Mueve el cuadro hacia abajo */
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: white;
+}
+
+input {
+    width: 80%;
+    padding: 12px; /* Aumenta el espacio dentro de los inputs */
+    font-size: 16px;
+    border-radius: 10px; /* Bordes redondeados para los inputs */
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: #fff; /* Fondo blanco para los inputs */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para los inputs */
+}
+
+input:focus {
+    outline: 2px solid #e67e22; /* Borde anaranjado cuando el input está en foco */
+    background-color: #fff3e0; /* Cambio de fondo para indicar foco */
+}
+
+/* Botón de login */
+button.login-btn {
+    width: 50%;
+    padding: 12px;
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px; /* Bordes redondeados para el botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para el botón */
+}
+
+button.login-btn:hover {
+    background-color: #d35400;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más intensa en hover */
+}
+
+/* Estilo para los enlaces de la sección extra */
+.extra-links {
+    text-align: center;
+}
+
+.extra-links h1 {
+    font-family: 'Playfair Display', serif;
+    color: white; /* Letras blancas */
+    text-align: center; /* Centrado horizontal */
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.create-account {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Espacio adicional en la parte inferior */
+}
+
+.create-account:hover {
+    text-decoration: underline;
+}
+
+/* Añadir espacio adicional en la parte inferior */
+footer {
+    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+    header .logo img {
+        height: 100px; /* Logo más pequeño en pantallas pequeñas */
+    }
+
+    nav ul {
+        flex-direction: column; /* Los enlaces se alinean en una columna */
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 28px; /* Ajusta el tamaño del título para pantallas más pequeñas */
+    }
+
+    .login-container {
+        width: 90%; /* Más estrecho en pantallas pequeñas */
+        padding: 20px;
+        margin-top: 100px; /* Mueve el cuadro de inicio de sesión más abajo */
+    }
+}
