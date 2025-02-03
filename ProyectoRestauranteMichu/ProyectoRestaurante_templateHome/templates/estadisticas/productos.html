@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Productos</title>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .tabla-productos {
+            width: 45%;
+            border-collapse: collapse;
+        }
+        .tabla-productos th, .tabla-productos td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabla-productos th {
+            background-color: #f4f4f4;
+        }
+        .chart-container {
+            width: 40%;
+        }
+        #chartProductos {
+            width: 100%;
+            height: 250px; /* Reduce la altura del gráfico */
+        }
+    </style>
+</head>
+<body>
+    <h1>Estadísticas de Productos</h1>
+    <form method="get">
+        <label for="fecha_inicio">Fecha Inicio:</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+        <label for="fecha_fin">Fecha Fin:</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+        <button type="submit">Generar</button>
+    </form>
+
+    <h2>Productos más vendidos</h2>
+    <div class="container">
+        <!-- Tabla de productos -->
+        <table class="tabla-productos">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad Vendida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.producto__nombre }}</td> <!-- Producto -->
+                    <td>{{ producto.total_vendido }}</td> <!-- Cantidad vendida -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Contenedor del gráfico -->
+        <div class="chart-container">
+            <canvas id="chartProductos"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById('chartProductos').getContext('2d');
+            const data = {
+                labels: [{% for producto in productos %}"{{ producto.producto__nombre }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+                datasets: [{
+                    label: 'Cantidad Vendida',
+                    data: [{% for producto in productos %}{{ producto.total_vendido }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, /* Para controlar manualmente el tamaño */
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Productos más vendidos'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

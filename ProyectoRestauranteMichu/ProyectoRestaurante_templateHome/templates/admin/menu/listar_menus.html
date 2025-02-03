@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Menús</title>
+    <link rel="stylesheet" href="{% static 'css/tablas_mesas.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
+                <li><a href="#">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="#">ESTADISTICAS</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Listado de Menús</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                        <th>Descartar</th>
+                        <th>Categorias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for menu in menus %}
+                        <tr>
+                            <td>{{ menu.nombre }}</td>
+                            <td>{% if menu.estado %}Activo{% else %}Inactivo{% endif %}</td>
+                            <td>
+                                <a href="{% url 'editar_menu' menu.pk %}"><i class="fas fa-edit"></i> Editar</a>
+                            </td>
+                            <td class="actions">
+                            <div class="btn-container">
+                            <a href="{% url 'eliminar_menu' menu.pk %}" onclick="return confirm('¿Estás seguro de eliminar este menu?');"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                            </div>
+                            </td>
+                            <td>
+                                <a href="{% url 'listar_categorias' menu.pk %}"><i class="fas fa-list"></i> Categorias</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3">No hay menús registrados.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if menus.has_other_pages %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if menus.has_previous %}
+                        <a href="?page=1">&laquo; Primero</a>
+                        <a href="?page={{ menus.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                    <span class="current">
+                        Página {{ menus.number }} de {{ menus.paginator.num_pages }}.
+                    </span>
+                    {% if menus.has_next %}
+                        <a href="?page={{ menus.next_page_number }}">Siguiente</a>
+                        <a href="?page={{ menus.paginator.num_pages }}">Último &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+
+        <div class="btn-container">
+            <a href="{% url 'crear_menu' %}" class="btn">Nuevo Menú</a>
+        </div>
+    </main>
+</body>
+</html>
