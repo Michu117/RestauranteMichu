@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Restaurante Michu</title>
+    <link rel="stylesheet" href="{% static 'css/pedidos.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Banner negro semitransparente -->
+    <div class="banner"></div>
+
+    <!-- Header con logo y botones a la derecha -->
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="#">RESERVACIONES</a></li>
+                    <li><a href="#">PEDIDOS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="{% static 'image/pedidos.jpg' %}" alt="Imagen de pedidos" class="hero-image">
+            <h1>REALICE SU PEDIDO</h1>
+            <p>Tenga el buen gusto de realizar pedidos sin límites.</p>
+
+            <!-- Contenedor para los formularios -->
+            <div class="form-container">
+                <!-- Formulario 1: Crear un Nuevo Pedido -->
+                <div class="form-column">
+                    <h2>Crear un Nuevo Pedido</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="id_cliente">Cliente</label>
+                            {{ form.cliente }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_producto">Producto</label>
+                            {{ form.producto }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_cantidad">Cantidad</label>
+                            {{ form.cantidad }}
+                        </div>
+
+                        <button type="submit" name="crear_pedido">Crear Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mensaje emergente con éxito -->
+    {% if messages %}
+        <div class="alert">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Carga de archivos JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

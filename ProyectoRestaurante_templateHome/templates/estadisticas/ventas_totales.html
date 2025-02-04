@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">}
+    <title>Ventas Totales - Restaurante Michu</title>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/ventas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'estadistica' %}">Estadísticas</a></li>
+                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
+                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
+                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
+                <li><a href="{% url 'ventas_totales' %}">Ventas</a></li>
+                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+        <h1>Ventas Totales</h1>
+        <p>Consulta el uso de las mesas del restaurante durante un periodo de tiempo específico.</p>
+        <form method="get">
+            <label for="fecha_inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+            <label for="fecha_fin">Fecha Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+            <button type="submit">Buscar</button>
+        </form>
+    
+        <h2>Ventas Totales</h2>
+        <div class="container">
+            {% if total_ventas >= 0 %}
+                <table class="tabla-mesas">
+                    <thead>
+                        <tr>
+                            <th>Rango de Fechas</th>
+                            <th>Total de Ventas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ fecha_inicio }} - {{ fecha_fin }}</td>
+                            <td>${{ total_ventas }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-data">No se encontraron ventas en el rango de fechas seleccionado.</p>
+            {% endif %}
+        </div>
+            
+        <div class="chart-container">
+            <canvas id="ventasChart"></canvas>
+        </div>
+    
+    <script>
+        const etiquetas = {{ etiquetas|safe }};
+        const datos = {{ datos|safe }};
+
+        const ctx = document.getElementById('ventasChart').getContext('2d');
+        const ventasChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: etiquetas,
+                datasets: [{ 
+                    label: 'Ventas Diarias',
+                    data: datos,
+                    backgroundColor: 'rgba(75, 192, 192, 1)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+        });
+    </script>
+    </section>
+</main>
+</body>
+</html>

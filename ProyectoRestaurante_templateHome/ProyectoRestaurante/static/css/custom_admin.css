@@ -1,0 +1,182 @@
+/* Estilos generales */
+body {
+    background-color: #1e1e1e; /* Fondo oscuro más profesional */
+    color: #e0e0e0; /* Texto claro con un tono más suave */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
+    line-height: 1.6;
+}
+
+/* Encabezado del panel */
+#header {
+    background-color: #121212; /* Fondo más oscuro y sofisticado */
+    padding: 20px;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600; /* Semi-bold para un aspecto más profesional */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+#header a {
+    color: #ffffff !important; /* Texto blanco */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#header a:hover {
+    color: #8b5e3b !important; /* Color café al hover */
+}
+
+/* Menú superior */
+#user-tools {
+    float: right;
+    font-size: 14px;
+}
+
+#user-tools a {
+    color: #e0e0e0 !important;
+    padding: 10px 15px;
+    font-weight: 500; /* Medium weight para mejor legibilidad */
+    transition: color 0.3s ease;
+}
+
+#user-tools a:hover {
+    color: #8b5e3b !important; /* Color café al hover */
+}
+
+/* Panel principal */
+.module caption {
+    background: #2a2a2a; /* Fondo oscuro para títulos */
+    color: #e0e0e0;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px;
+    border-bottom: 2px solid #8b5e3b; /* Línea decorativa */
+}
+
+/* Botones */
+button, input[type="submit"], .button {
+    background-color: #8b5e3b; /* Café oscuro */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, input[type="submit"]:hover, .button:hover {
+    background-color: #a37b56; /* Café más claro */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Tablas */
+.changelist-form table {
+    background-color: #2a2a2a;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.changelist-form th {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.changelist-form td {
+    padding: 10px;
+    border-bottom: 1px solid #444; /* Línea divisoria sutil */
+}
+
+/* Formularios */
+input, textarea {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #8b5e3b; /* Resaltar al enfocar */
+    outline: none;
+}
+
+/* Estilo para la fila de envío */
+.submit-row {
+    background-color: #2a2a2a !important;
+    border-top: 2px solid #8b5e3b;
+    padding: 20px;
+    text-align: right;
+}
+
+.submit-row input {
+    margin-left: 10px;
+}
+
+/* Mejoras adicionales */
+a {
+    color: #8b5e3b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #a37b56;
+}
+
+/* Espaciado y márgenes */
+.module {
+    margin-bottom: 20px;
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Efectos de hover en módulos */
+.module:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Asegura que aparezca justo debajo del botón */
+    left: 0;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    padding: 8px 0;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    padding: 8px 12px; /* Reduce el padding */
+    line-height: 1.4; /* Ajusta la altura de línea */
+}
+
+select {
+    background-color: #2a2a2a;
+    color: #e0e0e0; /* Texto claro */
+    border: 1px solid #8b5e3b; /* Borde con color destacado */
+    padding: 8px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    width: auto; /* Ajusta el ancho según el contenido */
+    font-size: 14px; /* Tamaño de fuente legible */
+    line-height: 1.4; /* Ajusta altura de línea */
+}
+
+.restaurant-logo {
+    max-height: 80px; /* Cambia este valor para modificar el tamaño */
+    width: auto; /* Mantiene la proporción */
+    vertical-align: middle;
+    margin-right: 10px;
+}

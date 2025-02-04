@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Menús</title>
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
+                <li><a href="#">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <img src="{% static 'image/mesas.jpg' %}" alt="Imagen del Menú" class="hero-image">
+            <h1>Listado de Categorias</h1>
+            <p>Consulta categorias del restaurante.</p>
+
+                <h2>Categorias</h2>
+                <div class="container">
+                    <table class="tabla-mesas">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Productos</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for categoria in categorias %}
+                                <tr>
+                                    <td>{{ categoria.nombre }}</td>
+                                    <td>
+                                    <a href="{% url 'listar_productos' categoria.pk %}"><i class="fas fa-edit"></i> Productos</a>
+                                    </td>
+                                    <td>
+                                    <a href="{% url 'editar_categoria' categoria.pk %}"><i class="fas fa-edit"></i> Editar</a>
+                                    </td>
+                                    <td>
+                                    <a href="{% url 'eliminar_mesa' categoria.pk %}" onclick="return confirm('¿Estás seguro de eliminar este menu?');"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3">No hay menús registrados.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if menus.has_other_pages %}
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if menus.has_previous %}
+                                <a href="?page=1">&laquo; Primero</a>
+                                <a href="?page={{ menus.previous_page_number }}">Anterior</a>
+                            {% endif %}
+                            <span class="current">
+                                Página {{ menus.number }} de {{ menus.paginator.num_pages }}.
+                            </span>
+                            {% if menus.has_next %}
+                                <a href="?page={{ menus.next_page_number }}">Siguiente</a>
+                                <a href="?page={{ menus.paginator.num_pages }}">Último &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+
+                
+                    <a href="{% url 'crear_categoria' %}" class="button">Nueva Categoria</a>
+                
+        </section>
+    </main>
+</body>
+</html>

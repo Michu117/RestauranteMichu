@@ -1,0 +1,281 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.banner {
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea todo al centro verticalmente */
+    padding: 15px 40px; /* Reduce un poco el padding superior e inferior */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    position: fixed;
+    top: 10px; /* Debajo del banner */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 80px; /* Ajusta la altura del header */
+}
+
+/* Ajustar logo */
+header .logo {
+    display: flex;
+    height: 120px;
+    align-items: center; /* Centra logo y texto */
+}
+
+/* Logo más grande y sin bordes redondeados */
+header .logo img {
+    height: 120px; /* Ajusta el tamaño del logo */
+    border-radius: 0; /* Sin bordes redondeados */
+}
+
+/* Alinear el texto con los botones */
+header .logo .restaurant-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: white; /* Texto en blanco */
+    margin-left: 15px;
+    margin-top: 5px; /* Ajusta este valor si es necesario */
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hero {
+    position: relative;
+    height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Texto en blanco */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre toda la pantalla */
+    z-index: -1; /* La imagen se coloca detrás del contenido */
+    filter: brightness(0.6); /* Oscurece la imagen para mejorar la legibilidad */
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 150px;
+}
+
+.hero h3{
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    height: 50px;
+}
+
+.hero button:hover {
+    background-color: #d35400;
+    width: 150px;
+    height: 50px;
+}
+
+
+/* Estilos del formulario */
+.form-container {
+    margin-top: 500px;
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+}
+
+.form-container h2 {
+    color: white; /* Título del formulario en blanco */
+    text-align: center; /* Centrar el título */
+    margin-bottom: 10px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Etiquetas en blanco */
+    text-align: center; /* Centrar las etiquetas */
+}
+
+.form-container input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff; /* Fondo blanco para los inputs */
+    color: black; /* Letras negras */
+}
+
+.form-container button {
+    background-color: #e67e22; /* Naranja */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #d35400; /* Naranja más oscuro al pasar el mouse */
+}
+
+/* Estilos de la tabla */
+.tabla-mesas {
+    width: 75%;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.tabla-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente (opcional) */
+    width: 100%;
+}
+
+.tabla-mesas th,
+.tabla-mesas td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.tabla-mesas th {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.tabla-mesas tbody tr td { /* Selecciona las celdas de las filas */
+    color: black; /* Texto negro */
+}
+
+.chart-container {
+    display: flex; /* Para que la tabla y el gráfico estén uno al lado del otro */
+    justify-content: space-between; /* Distribuye el espacio entre la tabla y el gráfico */
+    gap: 40px; /* Espacio entre la tabla y el gráfico */
+    align-items: flex-start;
+    width: 45%;
+}
+
+.chart-title {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+#ventasChart, #chartMesas{
+    width: 100%;
+    height: 300px;
+}
+
+.container {
+    gap: 40px;
+    align-items: center;
+}
+
+
+.btn {
+    display: inline-block;
+    text-decoration: none; /* Quita el subrayado */
+    background-color: #ff6600; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background 0.3s ease;
+    font-weight: bold;
+    border: none;
+}
+
+/* Cambia el color cuando se pasa el mouse */
+.btn:hover {
+    background-color: #cc5500;
+}
+
+/* Estilo para botón primario */
+.btn-primary {
+    background-color: #007bff;
+}
+
+/* Cambia el color del botón primario cuando se pasa el mouse */
+.btn-primary:hover {
+    background-color: #0056b3;
+}

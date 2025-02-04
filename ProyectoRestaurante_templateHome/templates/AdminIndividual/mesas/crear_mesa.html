@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Transferencia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
+                <li><a href="#">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>   
+        <section class="hero">
+            <img src="{% static 'image/mesas.jpg' %}" alt="Imagen de inicio" class="hero-image">
+            <h1>Crear Menu </h1>
+            <p>Crea un nuevo Menu </p>
+        </section>
+    </main>
+
+<div class="form-container">
+    <h1>Nueva Mesa</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Crear Mesa</button>
+    </form>
+</div>
+    
+<div class="btn-container">
+<a href="/listar_mesas/" class="btn">Volver a Mesas</a>
+</div>
+
+</body>
+</html>

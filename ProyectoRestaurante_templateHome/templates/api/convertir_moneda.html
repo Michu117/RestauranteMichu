@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Divisas - Restaurante Michu</title>
+    <!-- Carga de archivos CSS -->
+    <link rel="stylesheet" href="{% static 'css/convertir_moneda.css' %}">
+    <!-- Fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Banner negro semitransparente -->
+    <div class="banner"></div>
+
+    <!-- Header con logo y botones a la derecha -->
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="#">RESERVACIONES</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Hero con la imagen de fondo -->
+    <main>
+        <section class="hero" style="background-image: url('{% static 'image/Moneda.jpg' %}');">
+            <h1>Conversor de Divisas</h1>
+            <p>Convierte tu dinero de una moneda a otra de forma rápida y sencilla.</p>
+        </section>
+
+        <!-- Formulario para la conversión -->
+        <section class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Convertir</button>
+            </form>
+
+            {% if resultado %}
+                <h2>Resultado: {{ resultado }}</h2>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- Carga de archivos JS -->
+    <script src="{% static 'js/convertir_moneda.js' %}"></script>
+</body>
+</html>
