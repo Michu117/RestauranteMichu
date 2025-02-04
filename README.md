@@ -13,11 +13,16 @@ Aplicación de Gestión de Restaurante.
 4. Pruebas de Integración y Funcionalidad.
 5. Reflexión Escrita Final.
 ## Modulos
--[Modulo de Reportes y Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)
+-[Modulo de Reportes y Estadistica]
+(ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)
 -Este modulo, brinda la informacion del desempeño del restaurante, a travez de reportes y estadisticas que seran proporcionados en graficos dinamicos y archivos PDF. Incluyen productos mas vendido, mesa mas usada , desempeño de empleados y ventas totales. Esta informacion se genera a partir del ingreso en un rango de fechas establecidos por el administrador.
-[Modulo de Facturacion y Pagos](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/facturacion)
+
+[Modulo de Facturacion y Pagos]
+(ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/facturacion)
 -Este modulo, permite la generacion de una factura, la cual por defecto calcula el total del pedido, incluyendo impuestos  descuentos, ademas de generar el tipo de pago por el cual se tramita la factura tambien permite registrar todas las facturas emitidas. Este modulo, solo puede ser accedido por Administradores.
--[Inventario](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/inventario)
+
+-[Inventario]
+(ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/inventario)
 -Este modulo de inventario permite la gestion de  los insumos y productos necesarios para la preparación de los platos del restaurante. Cada insumo esta registrado con nombre, cantidad disponible y unidad de medida. El sistema debe permitir registrar entradas de nuevos insumos y salidas de los mismos cuando se utilizan en la preparación de los productos del menú. Además, es necesario generar alertas cuando el inventario de un insumo esté bajo o agotado. También debe permitir generar reportes de consumo de insumos y de stock disponible para facilitar la reposición.
 -[Modulos de Menús  Productos](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/menu)
 -Este módulo permite gestionar los productos y platos que se ofrecen en el restaurante. Cada producto tiene atributos como nombre, descripción, categoría, precio y disponibilidad. El menú puede estar organizado en categorías, como entradas, platos principales, postres y bebidas. El sistema debe permitir agregar nuevos productos al menú, modificarlos o eliminarlos cuando sea necesario. Además, se requiere que los productos puedan estar temporalmente fuera de stock o deshabilitados para su venta si los ingredientes no están disponibles. También se debe mantener un control de precios, permitiendo actualizarlos según sea necesario.
