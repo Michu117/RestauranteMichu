@@ -32,6 +32,15 @@
         <section class="hero">
         <h1>Ventas Totales</h1>
         <p>Consulta el uso de las mesas del restaurante durante un periodo de tiempo específico.</p>
+        <div class="btn-container">
+                <a href="{% url 'estadistica' %}">Estadísticas</a>
+                <a href="{% url 'estadisticas_mesas' %}">Mesas</a>
+                <a href="{% url 'estadisticas_meseros' %}">Meseros</a>
+                <a href="{% url 'estadisticas_productos' %}">Productos</a>
+                <a href="{% url 'ventas_totales' %}">Ventas</a>
+                <a href="{% url 'reportes' %}">Reportes</a>
+        </div>
+
         <form method="get">
             <label for="fecha_inicio">Fecha Inicio:</label>
             <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
