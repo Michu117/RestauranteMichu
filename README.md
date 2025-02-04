@@ -13,6 +13,7 @@ Aplicación de Gestión de Restaurante.
 4. Pruebas de Integración y Funcionalidad.
 5. Reflexión Escrita Final.
 ## Modulos
+- ** [Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)**
 ## Diagramas de Clases 
 ### Diagrama de Clases estadística
 ![Image](https://github.com/user-attachments/assets/16dd532f-568f-4bb7-8717-8682cb696e83)
