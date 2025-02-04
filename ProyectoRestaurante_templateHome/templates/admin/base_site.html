@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+{% block title %}Admin - Restaurante{% endblock %}
+
+<script src="{% static 'js/admin.js' %}"></script>
+
+{% block branding %}
+<h1 style="text-align: center;">Panel de Administración - Restaurante Michu</h1>
+<img src="{% static 'image/Logo.jpg.png' %}" alt="Logo" class="restaurant-logo">
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}">
+<style>
+    body {
+        background: url("{% static 'image/home.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+{% endblock %}

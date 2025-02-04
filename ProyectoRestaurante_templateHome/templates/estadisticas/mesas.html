@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Mesas - Restaurante Michu</title>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+         <nav>
+            <ul>
+                <li><a href="{% url 'estadistica' %}">Estadisticas</a></li>
+                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
+                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
+                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
+                <li><a href="{% url 'ventas_totales' %}">Ventas Totales</a></li>
+                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+        <img src="{% static 'image/mesas.jpg' %}" alt="Imagen del Menú" class="hero-image">
+        <h1>Estadísticas de Mesas</h1>
+        <p>Consulta el uso de las mesas en el restaurante durante un periodo de tiempo específico.</p>
+        <form method="get">
+            <label for="fecha_inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+            <label for="fecha_fin">Fecha Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+            <button type="submit">Generar</button>
+        </form>
+        
+        <h2>Uso de Mesas</h2>
+        <div class="container">
+            <table class="tabla-mesas">
+                <thead>
+                    <tr>
+                        <th>Código de la Mesa</th>
+                        <th>Cantidad de Usos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mesa in mesas %}
+                    <tr>
+                        <td>{{ mesa.mesa__codigo }}</td>
+                        <td>{{ mesa.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="chart-container">
+                <canvas id="chartMesas"></canvas>
+            </div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const ctx = document.getElementById('chartMesas').getContext('2d');
+                const data = {
+                    labels: [{% for mesa in mesas %}"{{ mesa.mesa__codigo }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    datasets: [{
+                        label: 'Cantidad de Usos',
+                        data: [{% for mesa in mesas %}{{ mesa.total }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+    
+                new Chart(ctx, {
+                    type: 'pie', /* Gráfico de pastel */
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Uso de Mesas',
+                                font: {size: 22, color: 'white'}
+                            },
+                        }
+                    }
+                });
+            });
+        </script>
+        </section>
+    </main>
+</body>
+</html>

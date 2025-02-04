@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Mesas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/Tablas_mesas.css' %}?v=2">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Lista de mesas</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
+                <li><a href="#">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="table-container">
+            <h2>Gestión de Inventario</h2> 
+            <table>   
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Ubicación</th>
+                        <th>Número de Asientos</th>
+                        <th>Estado</th>
+                        <th>Edición</th>
+                        <th>Descartar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mesa in mesas %}
+                    <tr>
+                        <td>{{ mesa.codigo }}</td>
+                        <td>{{ mesa.ubicacion }}</td>
+                        <td>{{ mesa.numero_asientos }}</td>
+                        <td>{{ mesa.estado }}</td>
+                        <td class="actions">
+                        <div class="btn-container">
+                        <a href="{% url 'editar_mesas' mesa.pk %}"><i class="fas fa-edit"></i> Editar</a>
+                        </div>
+                        </td>
+                        <td class="actions">
+                        <div class="btn-container">
+                        <a href="{% url 'eliminar_mesa' mesa.pk %}" onclick="return confirm('¿Estás seguro de eliminar esta mesa?');"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                        </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No hay mesas registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <div>
+        <a href="/crear_menu/" >Nuevo Menu</a>
+    </div>
+    
+    {% if inventarios.has_other_pages %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if mesas.has_previous %}
+                <a href="?page=1">&laquo; Primero</a>
+                <a href="?page={{ mesas.previous_page_number }}">Anterior</a>
+            {% endif %}
+            <span class="current">
+                Página {{ mesas.number }} de {{ mesas.paginator.num_pages }}.
+            </span>
+            {% if mesas.has_next %}
+                <a href="?page={{ mesas.next_page_number }}">Siguiente</a>
+                <a href="?page={{ mesas.paginator.num_pages }}">Último &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}   
+</main>
+</body>
+</html>

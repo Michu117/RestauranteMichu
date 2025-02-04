@@ -1,0 +1,189 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Banner negro semitransparente */
+.banner {
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 80px;
+}
+
+/* Logo */
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 120px;
+    border-radius: 0;
+}
+
+header .logo .restaurant-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-left: 15px;
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Sección Hero */
+.hero {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-image: url("{% static 'image/Categorias.jpg' %}");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+/* Estilos para los platos */
+.meals {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.meals h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Listado de Platos */
+.meals ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.meal-item {
+    width: 220px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meal-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.meal-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.meal-name {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    padding: 10px;
+}
+
+.meal-name a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.meal-name a:hover {
+    color: #e91e63;
+}
+
+/* Botón de regreso */
+.back-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    border: 2px solid #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: #333;
+    color: white;
+}

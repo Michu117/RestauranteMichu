@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" href="{% static 'css/reservas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="{% static 'image/mesas.jpg' %}" alt="Imagen de Reservas" class="hero-image">
+            <h1>Listado de Reservas</h1>
+            <p>Consulta las reservas del restaurante durante un periodo de tiempo específico.</p>
+
+            <h2>Reservas</h2>
+            <div class="tabla-container">
+                <table class="tabla-mesas">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Mesa</th>
+                            <th>Cantidad de Personas</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Cancelar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reserva in reservas %}
+                            <tr>
+                                <td>{{ reserva.cliente }}</td>
+                                <td>{{ reserva.mesa }}</td>
+                                <td>{{ reserva.cantidad_personas }}</td>
+                                <td>{{ reserva.fecha_reserva }}</td>
+                                <td>{{ reserva.estado }}</td>
+                                <td class="btn">
+                                    <a href="{% url 'cancelar_reserva' reserva.pk %}" onclick="return confirm('¿Estás seguro de cancelar esta reserva?');"><i class="fas fa-trash-alt"></i> Cancelar</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="8">No hay reservas registradas.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="btn-container">
+            <a href="{% url 'listar_menu' %}" class="btn">Volver a Menús</a>
+            <a href="{% url 'crear_reserva' %}" class="btn">Nueva Reserva</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

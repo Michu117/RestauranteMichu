@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ meal.strMeal }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/meal_detail.css' %}">
+</head>
+<body>
+    <!-- Banner negro semitransparente -->
+    <div class="banner"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="#">RESERVACIONES</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Hero con la imagen del plato -->
+    <section class="hero">
+        <div class="meal-container">
+            <h1>{{ meal.strMeal }}</h1>
+            <img src="{{ meal.strMealThumb }}" alt="{{ meal.strMeal }}" class="meal-image">
+        </div>
+    </section>
+
+    <!-- Detalles del Plato -->
+    <main class="meal-details-container">
+        <section class="meal-details">
+            <div class="meal-info">
+                <h2>Detalles del Plato</h2>
+                <p><strong>Categoría:</strong> {{ meal.strCategory }}</p>
+                <p><strong>Área:</strong> {{ meal.strArea }}</p>
+            </div>
+
+            <div class="meal-ingredients">
+                <h2>Ingredientes</h2>
+                <ul>
+                    {% for item in ingredients %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="meal-instructions">
+                <h2>Instrucciones</h2>
+                <p>{{ meal.strInstructions }}</p>
+            </div>
+
+            <div class="back-button">
+                <a href="{% url 'meals_by_category' meal.strCategory %}">Volver a la Categoría</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Carga de archivo JS -->
+    <script src="{% static 'js/meal_detail.js' %}"></script>
+</body>
+</html>
