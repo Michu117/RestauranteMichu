@@ -13,8 +13,10 @@ Aplicación de Gestión de Restaurante.
 4. Pruebas de Integración y Funcionalidad.
 5. Reflexión Escrita Final.
 ## Modulos
-- [Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)
+- [Modulo de Reportes y Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)
+- Este modulo, brinda la informacion del desempeño del restaurante, a travez de reportes y estadisticas que seran proporcionados en graficos dinamicos y archivos PDF. Incluyen productos mas vendido, mesa mas usada , desempeño de empleados y ventas totales. Esta informacion se genera a partir del ingreso en un rango de fechas establecidos por el administrador.
 - [Facturacion](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/facturacion)
+- 
 - [Inventario](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/inventario)
 - [Menú](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/menu)
 - [Pedidos](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/pedidos)
