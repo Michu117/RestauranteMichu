@@ -22,7 +22,7 @@ Aplicación de Gestión de Restaurante.
 ![Image](https://github.com/user-attachments/assets/b4e186e8-861e-4138-b4e7-0797f8fbf1f1)
 ## Diagrama de Clases Meú
 ![Image](https://github.com/user-attachments/assets/60c3cd7a-04e2-412d-bb4f-0ab1d1318808)
-## Diagrama de Clases Pedidos 
+## Diagrama de Clases Pedido
 ![Image](https://github.com/user-attachments/assets/84afb270-9913-4705-ac43-9e4b474802e6)
-## Diagrama de Clases mesas
-![Image](https://github.com/user-attachments/assets/5537753c-36fb-4502-beec-32149480127c)
+## Diagrama de Clases Mesa
+![Image](https://github.com/user-attachments/assets/1b5c4b63-2b6b-4ef8-9e54-e68d4f93ce48)
