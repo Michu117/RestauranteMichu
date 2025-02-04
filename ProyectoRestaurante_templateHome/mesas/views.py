@@ -13,7 +13,7 @@ from .forms import ReservaForm
 def homeAdmin(request):
     return render(request, 'Admin/homeAdmin.html')
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'user/home.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def login_view(request):
         else:
             messages.error(request, 'Credenciales incorrectas. Intenta de nuevo.')
 
-    return render(request, 'login.html')
+    return render(request, 'user/login.html')
 
 def register(request):
     if request.method == 'POST':
@@ -44,14 +44,12 @@ def register(request):
     else:
         form = CustomUserCreationForm()  # Forma vacía para el registro
 
-    return render(request, 'register.html', {'form': form})  # ✅ Se pasa el formulario
+    return render(request, 'user/register.html', {'form': form})  # ✅ Se pasa el formulario
 
 def logout_view(request):  # ✅ Nueva vista para cerrar sesión
     logout(request)
     messages.success(request, "Sesión cerrada correctamente.")
     return redirect('login')
-
-
 
 class listar_mesas(ListView):
     model = Mesa

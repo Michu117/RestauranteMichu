@@ -190,7 +190,7 @@ def gestionar_menu(request):
         'productos': productos,
     }
 
-    return render(request, 'menu/gestionar_menu.html', context)
+    return render(request, 'AdminIndividual/menu/gestionar_menu.html', context)
 
 
 def categories_view(request):

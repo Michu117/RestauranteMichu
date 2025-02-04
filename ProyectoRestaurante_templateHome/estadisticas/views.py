@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.db.models import Count, Sum
 from .models import *
-#from xhtml2pdf import pisa
+from xhtml2pdf import pisa
 def estadistica(request):
     return render(request, 'estadisticas/estadistica.html')
 
@@ -83,6 +83,8 @@ def ventas_totales(request):
     facturas = Factura.objects.filter(fecha__range=[fecha_inicio, fecha_fin])
     total_ventas = facturas.aggregate(total=Sum('total'))['total'] or 0
 
+    total_ventas = round(total_ventas, 2)
+
     # Obtener ventas diarias para el gráfico
     etiquetas = []
     datos = []
@@ -92,7 +94,7 @@ def ventas_totales(request):
         dia = fecha_inicio_dt + timedelta(days=i)
         etiquetas.append(dia.strftime('%Y-%m-%d'))
         ventas_dia = Factura.objects.filter(fecha=dia).aggregate(total=Sum('total'))['total'] or 0
-        datos.append(ventas_dia)
+        datos.append(round(ventas_dia, 2))
 
     return render(request, 'estadisticas/ventas_totales.html', {
         'total_ventas': total_ventas,
@@ -135,8 +137,7 @@ def reporte_pdf( request):
 
     total_ventas = facturas.aggregate(total=Sum('total'))['total'] or Decimal('0.00')
 
-    # Asegurarse de que las ventas totales tengan solo 2 decimales
-    total_ventas = total_ventas.quantize(Decimal('0.01'))
+    total_ventas = round(total_ventas, 2)
 
     # Renderizar la plantilla HTML con los datos
     template = get_template('estadisticas/reporte_pdf.html')
@@ -152,8 +153,8 @@ def reporte_pdf( request):
     # Crear el PDF
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
-    #pisa_status = pisa.CreatePDF(html, dest=response)
-    #if pisa_status.err:
-        #return HttpResponse('Error al generar el PDF', status=400)
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('Error al generar el PDF', status=400)
 
-    #return response
+    return response

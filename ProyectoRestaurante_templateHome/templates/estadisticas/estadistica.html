@@ -18,21 +18,33 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{% url 'estadistica' %}">Estadísticas</a></li>
-                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
-                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
-                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
-                <li><a href="{% url 'ventas_totales' %}">Ventas</a></li>
-                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
+                    <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
+                    <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero">
+            <h1>Estadísticas</h1>
+            <p>Gestiona tu restaurante mediante el sistema de generación de estadísticas. Obtén los datos más actualizados</p>
+            <div class="btn-container">
+                <a href="{% url 'estadisticas_mesas' %}">Mesas</a>
+                <a href="{% url 'estadisticas_meseros' %}">Meseros</a>
+                <a href="{% url 'estadisticas_productos' %}">Productos</a>
+                <a href="{% url 'ventas_totales' %}">Ventas</a>
+                <a href="{% url 'reportes' %}">Reportes</a>
+            </div>
         <img src="{% static 'image/estadisticas.jpg' %}" alt="Imagen de inicio" class="hero-image">    
-        <h1>Estadísticas</h1>
-        <p>Gestiona tu restaurante mediante el sistema de generación de estadísticas. Obtén los datos más actualizados</p>
         </section>
     </main>
 </body>

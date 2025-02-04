@@ -7,7 +7,6 @@ from menu.views import categories_view, meals_view, convertir_divisa
 from pedidos import views as pedidos_views  # Alias para las vistas de pedidos
 
 urlpatterns = [
-    path('AdminIndividual/', admin.site.urls),
     path('admin/', admin.site.urls),
     path('', mesas_views.home, name='home'),  # Usando alias para vistas de mesas
 

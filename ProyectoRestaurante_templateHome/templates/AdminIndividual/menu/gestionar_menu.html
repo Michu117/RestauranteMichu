@@ -4,32 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante Michu</title>
+    <title>Menú - Restaurante Michu</title>
     <!-- Carga de archivos CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gestion_menu.css' %}?v=1.0"|>
     <!-- Fuente de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Banner negro semitransparente -->
     <div class="banner"></div>
-
-    <!-- Header con logo y botones a la derecha -->
     <header>
         <div class="logo">
             <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
             <span class="restaurant-name">Restaurante Michu</span>
         </div>
         <nav>
-            <ul>
-                <li><a href="#">INICIO</a></li>
+             <ul>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
                 <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="#">RESERVACIONES</a></li>
-                    <li><a href="#">PEDIDOS</a></li>
+                    <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
+                    <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
+                    <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
                     <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
                 {% else %}
-                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -38,14 +37,17 @@
     <!-- Sección Hero con la imagen de fondo -->
     <main>
         <section class="hero">
-            <img src="{% static 'image/home.jpg' %}" alt="Imagen de inicio" class="hero-image">
-            <h1>COMIDA DE LA MEJOR CALIDAD</h1>
-            <p>Disfruta de los sabores más exquisitos preparados con ingredientes frescos y de la más alta calidad. Nuestro equipo de chefs expertos te garantiza una experiencia culinaria inolvidable.</p>
-            <button>RESERVA UNA MESA</button>
+            <img src="{% static 'image/Menu.jpg' %}" alt="Imagen del Menú" class="hero-image">
+            <h1>Descubre Nuestro Menú Exclusivo</h1>
+            <p>Elige entre nuestras deliciosas opciones, elaboradas con ingredientes frescos y de alta calidad.</p>
+            <div class="btn-container">
+            <a href="{% url 'categories' %}" class="button">VER MENÚ</a>
+            <a href="{% url 'listar_menu' %}" class="button">Listar Menus</a>
+            </div>
         </section>
     </main>
 
     <!-- Carga de archivos JS -->
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/gestion_menu.js' %}"></script>
 </body>
 </html>
