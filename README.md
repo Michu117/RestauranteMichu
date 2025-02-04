@@ -14,7 +14,7 @@ Aplicación de Gestión de Restaurante.
 5. Reflexión Escrita Final.
 ## Modulos
 -[Modulo de Reportes y Estadistica](ProyectoRestaurante_templateHome/estadisticas/models.py)
--Este modulo, brinda la informacion del desempeño del restaurante, a travez de reportes y estadisticas que seran proporcionados en graficos dinamicos y archivos PDF. Incluyen productos mas vendido, mesa mas usada , desempeño de empleados y ventas totales. Esta informacion se genera a partir del ingreso en un rango de fechas establecidos por el administrador.
+Este modulo, brinda la informacion del desempeño del restaurante, a travez de reportes y estadisticas que seran proporcionados en graficos dinamicos y archivos PDF. Incluyen productos mas vendido, mesa mas usada , desempeño de empleados y ventas totales. Esta informacion se genera a partir del ingreso en un rango de fechas establecidos por el administrador.
 
 
 -[Modulo de Facturacion y Pagos](ProyectoRestaurante_templateHome/facturacion/models.py)
