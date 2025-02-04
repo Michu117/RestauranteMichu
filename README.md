@@ -13,7 +13,12 @@ Aplicación de Gestión de Restaurante.
 4. Pruebas de Integración y Funcionalidad.
 5. Reflexión Escrita Final.
 ## Modulos
-- ** [Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)**
+- [Estadistica](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/estadisticas)
+- [Facturacion](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/facturacion)
+- [Inventario](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/inventario)
+- [Menú](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/menu)
+- [Pedidos](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/pedidos)
+- [Mesas](ProyectoRestauranteMichu/ProyectoRestaurante_templateHome/mesas)
 ## Diagramas de Clases 
 ### Diagrama de Clases estadística
 ![Image](https://github.com/user-attachments/assets/16dd532f-568f-4bb7-8717-8682cb696e83)
@@ -21,7 +26,7 @@ Aplicación de Gestión de Restaurante.
 ![Image](https://github.com/user-attachments/assets/8863c411-600f-4528-9ddd-54becdd8d655)
 ## Diagrama de Clases Inventario
 ![Image](https://github.com/user-attachments/assets/b4e186e8-861e-4138-b4e7-0797f8fbf1f1)
-## Diagrama de Clases Meú
+## Diagrama de Clases Menú
 ![Image](https://github.com/user-attachments/assets/60c3cd7a-04e2-412d-bb4f-0ab1d1318808)
 ## Diagrama de Clases Pedido
 ![Image](https://github.com/user-attachments/assets/84afb270-9913-4705-ac43-9e4b474802e6)
