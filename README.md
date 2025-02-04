@@ -55,4 +55,4 @@ Este módulo gestiona la disponibilidad y uso de las mesas dentro del restaurant
 ## Diagrama de Clases Pedido
 ![Image](https://github.com/user-attachments/assets/d1191f78-eada-4271-80b4-b04e8aa98dea)
 ## Diagrama de Clases Mesa
-![Image](https://github.com/user-attachments/assets/1b5c4b63-2b6b-4ef8-9e54-e68d4f93ce48)
+![Image](https://github.com/user-attachments/assets/26513add-703a-48ab-9b99-6a5db9dd23ab)
