@@ -22,3 +22,11 @@ En la siguiente figura observamos como se integra la base de datos MySQL con nue
 ![database image](https://github.com/user-attachments/assets/a02f227a-b5a4-4b47-b5f5-6e7f3e98f66e)
 
 En la última imagen se observa la base de datos en funcionamiento, se puede evidenciar como se registra un Cliente como Persona. Además en la tabla de la izquierda se puede observar todas las tablas creadas por las migraciones.
+
+## Exportación de la Base de Datos
+![image](https://github.com/user-attachments/assets/b0e6132d-1311-4979-a9f4-4fa99a6bc314)
+
+![image](https://github.com/user-attachments/assets/0bf21a3c-3fe0-43dd-ab43-8bfc12b654ff)
+
+Archivo Generado:
+[restaurantemichu.sql](https://github.com/Michu117/RestauranteMichu/blob/main/restaurantemichu.sql)
