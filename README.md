@@ -13,33 +13,33 @@ Aplicación de Gestión de Restaurante.
 4. Pruebas de Integración y Funcionalidad.
 5. Reflexión Escrita Final.
 ## Modulos
--[Modulo de Reportes y Estadistica](ProyectoRestaurante_templateHome/estadisticas/models.py)
+- [Modulo de Reportes y Estadistica](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/estadisticas)
 
 Este modulo, brinda la informacion del desempeño del restaurante, a travez de reportes y estadisticas que seran proporcionados en graficos dinamicos y archivos PDF. Incluyen productos mas vendido, mesa mas usada , desempeño de empleados y ventas totales. Esta informacion se genera a partir del ingreso en un rango de fechas establecidos por el administrador.
 
 
--[Modulo de Facturacion y Pagos](ProyectoRestaurante_templateHome/facturacion/models.py)
+- [Modulo de Facturacion y Pagos](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/facturacion)
 
 Este modulo, permite la generacion de una factura, la cual por defecto calcula el total del pedido, incluyendo impuestos y descuentos, ademas de generar el tipo de pago por el cual se tramita la factura, tambien permite registrar todas las facturas emitidas. Este modulo, solo puede ser accedido por el administrador
 
 
--[Modulo de Inventario](ProyectoRestaurante_templateHome/inventario/models.py)
+- [Modulo de Inventario](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/inventario)
 
 Este modulo, inventario, permite la gestion de  los insumos y productos necesarios para la preparación de los platos del restaurante. Cada insumo esta registrado con nombre, cantidad disponible y unidad de medida. el sistemas permite el ingreso de entradas de nuevos insumos y salidas de los mismos. Además, genera alertas cuando el insumo de inventario esté bajo o agotado. solo accesible para administrador
 
 
--[Modulos de Menús y Productos](ProyectoRestaurante_templateHome/menu/models.py)
+- [Modulos de Menús y Productos](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/menu)
 
 Este módulo gestiona los productos y platos que se ofrecen en el restaurante. Cada producto tiene atributos como nombre, descripción, categoría, precio y disponibilidad. El menú esta organizado por categorías, El sistema permitir agregar nuevos productos al menú, modificarlos o eliminarlos.
 
 
--[Modulos de Pedidos](ProyectoRestaurante_templateHome/pedidos/models.py)
+- [Modulos de Pedidos](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/pedidos)
 
 El módulo de pedidos permite gestionar los pedidos de los clientes, desde que se realiza el pedido hasta que es servido y pagado. Cada pedido puede contener uno o más productos del menú, y es posible agregar o eliminar productos mientras el pedido no haya sido servido. El sistema permiti modificar cantidades de productos en los pedidos, así como su estado. este modulo interactura con el usuario
 
 
 
--[Modulo de Mesas y reservaciones](ProyectoRestaurante_templateHome/mesas/models.py)
+- [Modulo de Mesas y reservaciones](https://github.com/Michu117/RestauranteMichu/tree/main/ProyectoRestaurante_templateHome/mesas)
 
 Este módulo gestiona la disponibilidad y uso de las mesas dentro del restaurante. Las mesas pueden estar en diferentes estados, tales como libre, ocupada o reservada. Los clientes pueden hacer reservaciones especificando la fecha y hora de la reserva. par lograr identificar  cada mesa, como el número de asientos y su ubicación en el restaurante. Cuando un cliente llega, una mesa puede ser asignada, y al finalizar su uso, la mesa debe ser liberada para otros clientes. Las reservaciones pueden ser modificadas o canceladas por el cliente o el personal del restaurante.este modulo interactura directamente con el usuario
 
