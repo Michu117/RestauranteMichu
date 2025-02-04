@@ -20,7 +20,7 @@ Este modulo, brinda la informacion del desempeño del restaurante, a travez de r
 
 -[Modulo de Facturacion y Pagos](ProyectoRestaurante_templateHome/facturacion/models.py)
 
-Este modulo, permite la generacion de una factura, la cual por defecto calcula el total del pedido, incluyendo impuestos  descuentos, ademas de generar el tipo de pago por el cual se tramita la factura tambien permite registrar todas las facturas emitidas. Este modulo, solo puede ser accedido por Administradores.
+Este modulo, permite la generacion de una factura, la cual por defecto calcula el total del pedido, incluyendo impuestos y descuentos, ademas de generar el tipo de pago por el cual se tramita la factura, tambien permite registrar todas las facturas emitidas. Este modulo, solo puede ser accedido por el administrador
 
 
 -[Modulo de Inventario](ProyectoRestaurante_templateHome/inventario/models.py)
