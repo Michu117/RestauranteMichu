@@ -37,17 +37,31 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()  # ✅ Guarda el nuevo usuario
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Cuenta creada para {username}! Ahora puedes iniciar sesión.')
-            return redirect('login')  # ✅ Redirige al login después de registrarse
+            user = form.save(commit=False)  # Por si acaso necesita hacer más operaciones
+            user.username = form.cleaned_data.get('username')
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.id_number = form.cleaned_data.get('id_number')
+            user.phone = form.cleaned_data.get('phone')
+            user.save()  # Ahora guardamos el usuario completo
+
+            # Guardar también al Usuario como un Cliente
+            Cliente.objects.create(
+                nombre=user.first_name,
+                apellido=user.last_name,
+                cedula=user.id_number,
+                telefono=user.phone,
+
+            )
+
+            messages.success(request, f'Cuenta creada para {user.username}! Ahora puedes iniciar sesión.')
+            return redirect('login')  # Redirige al login después de registrarse
         else:
-            messages.error(request, 'Por favor, completa todos los campos correctamente.')
-
+            for msg in form.error_messages:
+                messages.error(request, f'{msg}: {form.error_messages[msg]}')
     else:
-        form = CustomUserCreationForm()  # Forma vacía para el registro
-
-    return render(request, 'user/register.html', {'form': form})  # ✅ Se pasa el formulario
+        form = CustomUserCreationForm()
+    return render(request, 'user/register.html', {'form': form})
 
 def logout_view(request):  # ✅ Nueva vista para cerrar sesión
     logout(request)
