@@ -1,43 +1,48 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes</title>
-
+    <title>Restaurante Michu</title>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>REPORTES</h1>
-    <h2>Reportes Disponibles</h2>
-    <form method="get" action="{% url 'reporte_pdf' %}">
-    <label for="fecha_inicio">Fecha Inicio:</label>
-    <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
-    <label for="fecha_fin">Fecha Fin:</label>
-    <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
-    <button type="submit">Generar</button>
-</form>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'estadistica' %}">Estadísticas</a></li>
+                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
+                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
+                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
+                <li><a href="{% url 'ventas_totales' %}">Ventas Totales</a></li>
+                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
 
-</header>
-
-<div class="container">
-    <ul class="reportes-list">
-        <li class="reporte-item">
-            <div class="action-buttons">
-                <button onclick="location.href{% url 'reporte_pdf' %}">Exportar PDF</button>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<script>
-    function updateTime() {
-        const timeDisplay = document.getElementById("current-time");
-        const now = new Date();
-        timeDisplay.textContent = now.toLocaleTimeString();
-    }
-
-    setInterval(updateTime, 1000);
-</script>
+    <!-- Contenido principal -->
+    <main>
+        <section class="hero">
+            <img src="{% static 'image/reportes.jpeg' %}" alt="Imagen de reporte" class="hero-image">
+            <h1>Reportes Estadística</h1>
+            <p>Visualiza el reporte en formato PDF</p>
+            <form method="get" action="{% url 'reporte_pdf' %}">
+               <label for="fecha_inicio">Fecha Inicio:</label>
+               <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+               <label for="fecha_fin">Fecha Fin:</label>
+               <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+               <button type="submit">Generar</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
+

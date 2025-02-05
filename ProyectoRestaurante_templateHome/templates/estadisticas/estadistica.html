@@ -37,14 +37,14 @@
         <section class="hero">
             <h1>Estadísticas</h1>
             <p>Gestiona tu restaurante mediante el sistema de generación de estadísticas. Obtén los datos más actualizados</p>
+            <img src="{% static 'image/estadisticas.jpg' %}" alt="Imagen de inicio" class="hero-image">
             <div class="btn-container">
-                <a href="{% url 'estadisticas_mesas' %}">Mesas</a>
-                <a href="{% url 'estadisticas_meseros' %}">Meseros</a>
-                <a href="{% url 'estadisticas_productos' %}">Productos</a>
-                <a href="{% url 'ventas_totales' %}">Ventas</a>
-                <a href="{% url 'reportes' %}">Reportes</a>
+                <a href="{% url 'estadisticas_meseros' %}" class="btn">Meseros</a>
+                <a href="{% url 'estadisticas_mesas' %}" class="btn">Mesas</a>
+                <a href="{% url 'estadisticas_productos' %}" class="btn">Productos</a>
+                <a href="{% url 'ventas_totales' %}" class="btn">Ventas</a>
+                <a href="{% url 'reportes' %}" class="btn">Reporte</a>
             </div>
-        <img src="{% static 'image/estadisticas.jpg' %}" alt="Imagen de inicio" class="hero-image">    
         </section>
     </main>
 </body>

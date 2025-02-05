@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Reserva</title>
-    <link rel="stylesheet" href="{% static 'css/formularios.css' %}?v=1.0">
+    <title>Crear Reserva - Restaurante Michu</title>
+    <link rel="stylesheet" href="{% static 'css/fechas.css' %}">
 </head>
 <body>
     <div class="banner"></div>
@@ -16,33 +16,74 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">INICIO</a></li>
-                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
-                    <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
-                    <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
-                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
-                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
-                {% endif %}
+                <li><a href="#">INICIO</a></li>
+                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
+                <li><a href="#">RESERVACIONES</a></li>
+                <li><a href="#">PEDIDOS</a></li>
+                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                <li><a href="#">INVENTARIO</a></li>
+                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <div class="form-container">
-            <h1>Nueva Reserva</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn">Crear Reserva</button>
-            </form>
-            <div class="button">
-                <a href="{% url 'listar_reservas' %}" class="btn">Volver a Reservas</a>
+        <section class="hero">
+            <img src="{% static 'image/mesas.jpg' %}" alt="Imagen del Menú" class="hero-image">
+            <h1>Formulario de Reserva</h1>
+            <p>Realiza tu reserva de mesa seleccionando los detalles a continuación.</p>
+            <div class="form-container">
+                <form method="post">
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ lis|capfirst }} {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                    {% csrf_token %}
+                    <div class="form-column">
+                        <h2>Detalles de la Reserva</h2>
+
+                        <div class="two-columns">  <div class="column">
+                                <label for="mesa">Mesa:</label>
+                                {{ form.mesa }}
+                            </div>
+                            <div class="column">
+                                <label for="cliente">Cliente:</label>
+                                {{ form.cliente }}
+                            </div>
+                        </div>
+
+                        <div class="two-columns">  <div class="column">
+                                <label for="fecha">Fecha:</label>
+                                {{ form.fecha }}
+                            </div>
+                            <div class="column">
+                                <label for="hora_inicio">Hora de Inicio:</label>
+                                {{ form.hora_inicio }}
+                            </div>
+                        </div>
+
+                        <div class="two-columns">
+                            <div class="column">
+                                <label for="hora_fin">Hora de Fin:</label>
+                                {{ form.hora_fin }}
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button type="submit" class="btn">Reservar</button>
+                            <a href="{% url 'listar_reservas' %}" class="btn btn-secondary">Ver Reservas</a>
+                        </div>
+                    </div>
+                    </div>
+                </form>
             </div>
-        </div>
+        </section>
     </main>
 </body>
 </html>

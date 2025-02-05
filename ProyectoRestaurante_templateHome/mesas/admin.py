@@ -1,43 +1,13 @@
 from django.contrib import admin
-from django.utils.html import format_html
-from django.core.exceptions import ValidationError
-from django.contrib import messages
-from .models import Mesa, Persona, Cliente, Personal, Reserva
+from mesas.models import Mesa, Persona, Cliente, Reserva
+
 
 @admin.register(Mesa)
 class MesaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'numero_asientos', 'ubicacion', 'estado', 'cantidad_uso', 'ver_mesas_unidas')
-    search_fields = ('codigo', 'ubicacion',)
-    list_filter = ('estado',)
-
-    # Mostrar las mesas unidas como enlaces en la lista
-    def ver_mesas_unidas(self, obj):
-        return format_html("<br>".join([mesa.codigo for mesa in obj.mesas_unidas.all()]))
-
-    ver_mesas_unidas.short_description = 'Mesas Unidas'
-
-    actions = ['unir_mesas']
-
-    def unir_mesas(self, request, queryset):
-        """
-        Acción personalizada para unir mesas seleccionadas
-        """
-        # Comprobar que se seleccionaron al menos dos mesas
-        if queryset.count() < 2:
-            self.message_user(request, "Debe seleccionar al menos dos mesas para unir.", level=messages.ERROR)
-            return
-
-        # Tomar la primera mesa como principal y las demás como mesas a unir
-        mesa_principal = queryset.first()
-        mesas_a_unir = queryset.exclude(id=mesa_principal.id)
-
-        try:
-            mesa_principal.unir_mesas(mesas_a_unir)
-            self.message_user(request,
-                              f"Mesas unidas correctamente. La mesa {mesa_principal.codigo} ahora tiene {mesa_principal.numero_asientos} asientos.",
-                              level=messages.SUCCESS)
-        except ValidationError as e:
-            self.message_user(request, str(e), level=messages.ERROR)
+    # Mostrar campos en la lista de mesas
+    list_display = ('codigo', 'numero_asientos', 'ubicacion')
+    search_fields = ('codigo', 'ubicacion')  # Buscar por código o ubicación
+    ordering = ('codigo',)  # Ordenar por código de mesa
 
 
 @admin.register(Persona)
@@ -53,58 +23,17 @@ class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'cedula',)
    # Puedes añadir un filtro personalizado dependiendo de relaciones.
 
-
-
-@admin.register(Personal)
-class PersonalAdmin(admin.ModelAdmin):
-    list_display = ('nombre','identificador_Personal', 'cedula',)
-    list_filter = ('identificador_Personal',)
-    search_fields = ('nombre',)
-
 @admin.register(Reserva)
 class ReservaAdmin(admin.ModelAdmin):
-    list_display = ('identificador', 'cliente', 'mesa', 'estado', 'fecha_reserva', 'duracion')
-    list_filter = ('estado', 'fecha_reserva')
-    search_fields = (
-        'identificador',
-        'cliente__nombre',
-        'mesa__codigo',
-        'cliente__telefono',
-        'estado',
-        'fecha_reserva',
-    )
-    ordering = ('fecha_reserva',)
-    list_editable = ('estado', 'mesa')
+    # Mostrar campos en la lista de reservas
+    list_display = ('cliente', 'mesa', 'fecha', 'hora_inicio', 'hora_fin', 'estado_reserva')
+    list_filter = ('fecha', 'mesa', 'hora_inicio', 'hora_fin')  # Filtros para facilitar la búsqueda
+    search_fields = ('mesa__codigo',)  # Buscar por nombre del cliente o código de mesa
+    ordering = ('fecha', 'hora_inicio')  # Ordenar por fecha y hora de inicio
 
-    # Campo calculado para la duración de la reserva
-    def duracion(self, obj):
-        # Como solo estamos trabajando con fecha, eliminamos la lógica de la hora
-        return "Sin hora definida"  # O cualquier otro mensaje adecuado para tu modelo
-    duracion.short_description = "Duración"
-
-    # Campo coloreado para el estado con icono
-    def estado_coloreado(self, obj):
-        colores = {
-            'CONFIRMADA': ('green', '✔️'),
-            'CANCELADA': ('red', '❌'),
-            'FINALIZADA': ('blue', '✅'),
-            'ENCURSO': ('orange', '⏳'),
-        }
-        color, icono = colores.get(obj.estado, ('black', '❔'))
-        return format_html(
-            '<span style="color: {};">{} {}</span>',
-            color,
-            icono,
-            obj.estado
-        )
-    estado_coloreado.short_description = "Estado"
-
-    def cancelar_reserva(self, request, queryset):
-        """
-        Acción personalizada para cancelar reservas desde el admin.
-        """
-        for reserva in queryset:
-            reserva.cancelar_reserva(reserva.identificador)
-        self.message_user(request, f"{queryset.count()} reserva(s) cancelada(s) correctamente.")
-
-    actions = ['cancelar_reserva']  # Registra la acción en el admin.
+    # Añadir un campo para mostrar el estado de la reserva (puedes personalizarlo más)
+    def estado_reserva(self, obj):
+        if obj.hora_inicio < obj.hora_fin:
+            return "Disponible"
+        return "No disponible"
+    estado_reserva.short_description = 'Estado de la Reserva'

@@ -26,6 +26,9 @@ urlpatterns = [
     path('homeAdmin/', mesas_views.homeAdmin, name='homeAdmin'),
     path('listar_mesas/', mesas_views.listar_mesas.as_view(), name='listar_mesas'),
     path('editar_mesas/<int:pk>/', mesas_views.edicion_mesas.as_view(), name='editar_mesas'),
+    path('reservar/', mesas_views.crear_reserva, name='crear_reserva'),
+    path('reserva_exito/', mesas_views.reserva_exito, name='reserva_exito'),
+    path('eliminar_reserva/<int:pk>/', mesas_views.eliminar_reserva, name='eliminar_reserva'),
     path('crear_mesa/', mesas_views.crear_mesa.as_view(), name='crear_mesa'),
     path('eliminar_mesa/<int:pk>/', mesas_views.eliminar_mesa, name='eliminar_mesa'),
 
@@ -43,8 +46,7 @@ urlpatterns = [
     path('productos/<int:pk>/eliminar/', menu_views.eliminar_producto, name='eliminar_producto'),
     path('menus/', include('menu.urls')),
     path('convertir/', convertir_divisa, name='convertir_divisa'),
-    path('reservas/', mesas_views.listar_reservas, name='listar_reservas'),
+    path('listar_reservas/', mesas_views.listar_reservas, name='listar_reservas'),
     path('reservas/crear/', mesas_views.crear_reserva, name='crear_reserva'),
-    path('reservas/cancelar/<int:reserva_id>/', mesas_views.cancelar_reserva, name='cancelar_reserva'),
     path('pedidos/', pedidos_views.gestionar_pedidos, name='gestionar_pedidos'),  # Añadido para pedidos
 ]

@@ -1,59 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas de Meseros</title>
+    <title>Restaurante Michu</title>
     <script src="{% static 'js/chart.min.js' %}"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .tabla-meseros {
-            width: 45%;
-            border-collapse: collapse;
-        }
-        .tabla-meseros th, .tabla-meseros td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .tabla-meseros th {
-            background-color: #f4f4f4;
-        }
-        .chart-container {
-            width: 40%;
-        }
-        #chartMeseros {
-            width: 100%;
-            height: 250px; /* Reduce la altura del gráfico */
-        }
-        form {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Estadísticas de Meseros</h1>
-    <form method="get">
-        <label for="fecha_inicio">Fecha Inicio:</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
-        <label for="fecha_fin">Fecha Fin:</label>
-        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
-        <button type="submit">Generar</button>
-    </form>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'estadistica' %}">Estadísticas</a></li>
+                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
+                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
+                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
+                <li><a href="{% url 'ventas_totales' %}">Ventas Totales</a></li>
+                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="{% static 'image/meseros.jpg' %}" alt="Imagen del Menú" class="hero-image">
+            <h1>Estadisticas de meseros</h1>
+            <p>Visualiza las actividades de meseros</p>
+        <form method="get">
+             <label for="fecha_inicio">Fecha Inicio:</label>
+             <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+             <label for="fecha_fin">Fecha Fin:</label>
+             <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+             <button type="submit">Generar</button>
+        </form>
 
     <h2>Pedidos Atendidos</h2>
     <div class="container">
-        <!-- Tabla de meseros -->
-        <table class="tabla-meseros">
+        <table class="tabla-mesas">
             <thead>
                 <tr>
                     <th>Nombre del Mesero</th>
@@ -112,14 +102,16 @@
                     maintainAspectRatio: false,
                     plugins: {
                         title: {
-                            display: true,
-                            text: 'Pedidos Atendidos por Mesero'
-                        }
+                                display: true,
+                                text: 'Pedidos Atendidos por Mesero',
+                                font: {size: 22, color: 'white'}
+                            },
                     }
                 }
             });
         });
     </script>
+     </section>>
+    </main>
 </body>
 </html>
-

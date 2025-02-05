@@ -33,14 +33,6 @@
         <img src="{% static 'image/mesas.jpg' %}" alt="Imagen del Menú" class="hero-image">
         <h1>Estadísticas de Mesas</h1>
         <p>Consulta el uso de las mesas en el restaurante durante un periodo de tiempo específico.</p>
-        <div class="btn-container">
-                <a href="{% url 'estadistica' %}">Estadísticas</a>
-                <a href="{% url 'estadisticas_mesas' %}">Mesas</a>
-                <a href="{% url 'estadisticas_meseros' %}">Meseros</a>
-                <a href="{% url 'estadisticas_productos' %}">Productos</a>
-                <a href="{% url 'ventas_totales' %}">Ventas</a>
-                <a href="{% url 'reportes' %}">Reportes</a>
-        </div>
 
         <form method="get">
             <label for="fecha_inicio">Fecha Inicio:</label>
@@ -52,6 +44,7 @@
         
         <h2>Uso de Mesas</h2>
         <div class="container">
+
             <table class="tabla-mesas">
                 <thead>
                     <tr>
@@ -68,7 +61,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
+
             <div class="chart-container">
                 <canvas id="chartMesas"></canvas>
             </div>

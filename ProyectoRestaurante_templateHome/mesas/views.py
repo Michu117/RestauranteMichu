@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, logout
+from django.http import HttpResponse
+
 from mesas.forms import CustomUserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import MesaForm
@@ -9,6 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from mesas.admin import Reserva
 from .forms import ReservaForm
+from django.http import HttpResponse
 
 def homeAdmin(request):
     return render(request, 'Admin/homeAdmin.html')
@@ -81,7 +84,7 @@ def eliminar_mesa(request, pk):
     return redirect('listar_mesas')
 
 def listar_reservas(request):
-    reservas = Reserva.objects.all().order_by('-fecha_reserva')
+    reservas = Reserva.objects.all().order_by('-fecha')
     return render(request, 'reservas/lista_reservas.html', {'reservas': reservas})
 
 def crear_reserva(request):
@@ -89,16 +92,21 @@ def crear_reserva(request):
         form = ReservaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Reserva creado exitosamente.")
             return redirect('listar_reservas')  # Redirigir a una página de éxito
+        else:
+            messages.success(request, "Ingrese datos correctos")
+            # Si el formulario no es válido, vuelve a mostrarlo con errores
+            return render(request, 'reservas/crear_reserva.html', {'form': form})
     else:
         form = ReservaForm()
-
     return render(request, 'reservas/crear_reserva.html', {'form': form})
 
+def reserva_exito(request):
+    return HttpResponse("Reserva realizada con éxito!")
 
-def cancelar_reserva(request, reserva_id):
-    reserva = get_object_or_404(Reserva, id=reserva_id)
-    reserva.estado = "CANCELADA"
-    reserva.save()
-    messages.success(request, "Reserva cancelada correctamente.")
+def eliminar_reserva(request, pk):
+    reserva = get_object_or_404(Reserva, pk=pk)
+    reserva.delete()
     return redirect('listar_reservas')
+

@@ -5,9 +5,13 @@ from django.template.loader import get_template
 from django.db.models import Count, Sum
 from .models import *
 from xhtml2pdf import pisa
+from django.contrib.auth.decorators import user_passes_test
+from ProyectoRestaurante.restricciones import es_superuser
+@user_passes_test(es_superuser)
 def estadistica(request):
     return render(request, 'estadisticas/estadistica.html')
 
+@user_passes_test(es_superuser)
 def estadisticas_meseros(request):
     fecha_inicio = request.GET.get('fecha_inicio', date.today())
     fecha_fin = request.GET.get('fecha_fin', date.today())
@@ -27,6 +31,7 @@ def estadisticas_meseros(request):
     })
 
 # Estadísticas de Mesas
+@user_passes_test(es_superuser)
 def estadisticas_mesas(request):
     fecha_inicio = request.GET.get('fecha_inicio', date.today())
     fecha_fin = request.GET.get('fecha_fin', date.today())
@@ -46,7 +51,7 @@ def estadisticas_mesas(request):
     })
 
 # Estadísticas de Productos
-
+@user_passes_test(es_superuser)
 def estadisticas_productos(request):
     fecha_inicio = request.GET.get('fecha_inicio', date.today())
     fecha_fin = request.GET.get('fecha_fin', date.today())
@@ -65,6 +70,7 @@ def estadisticas_productos(request):
         'fecha_inicio': fecha_inicio,
         'fecha_fin': fecha_fin,
     })
+@user_passes_test(es_superuser)
 def ventas_totales(request):
     fecha_inicio = request.GET.get('fecha_inicio')
     fecha_fin = request.GET.get('fecha_fin')
@@ -83,8 +89,6 @@ def ventas_totales(request):
     facturas = Factura.objects.filter(fecha__range=[fecha_inicio, fecha_fin])
     total_ventas = facturas.aggregate(total=Sum('total'))['total'] or 0
 
-    total_ventas = round(total_ventas, 2)
-
     # Obtener ventas diarias para el gráfico
     etiquetas = []
     datos = []
@@ -94,7 +98,7 @@ def ventas_totales(request):
         dia = fecha_inicio_dt + timedelta(days=i)
         etiquetas.append(dia.strftime('%Y-%m-%d'))
         ventas_dia = Factura.objects.filter(fecha=dia).aggregate(total=Sum('total'))['total'] or 0
-        datos.append(round(ventas_dia, 2))
+        datos.append(ventas_dia)
 
     return render(request, 'estadisticas/ventas_totales.html', {
         'total_ventas': total_ventas,
@@ -104,10 +108,10 @@ def ventas_totales(request):
         'datos': datos,
     })
 
-
+@user_passes_test(es_superuser)
 def reportes(request):
     return render(request, 'estadisticas/reportes.html')
-
+@user_passes_test(es_superuser)
 def reporte_pdf( request):
     fecha_inicio = request.GET.get('fecha_inicio')
     fecha_fin = request.GET.get('fecha_fin')

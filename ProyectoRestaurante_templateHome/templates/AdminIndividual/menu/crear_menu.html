@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar Menú</title>
-    <link rel="stylesheet" href="{% static 'css/formularios.css' %}">
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" href="{% static 'css/pedidos.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="banner"></div>
@@ -16,29 +17,47 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">INICIO</a></li>
-                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
-                <li><a href="#">RESERVACIONES</a></li>
-                <li><a href="#">PEDIDOS</a></li>
-                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
-                <li><a href="#">INVENTARIO</a></li>
-                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
+                    <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
+                    <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
-    <div class="form-container">
-        <h1>Nuevo Menú</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Crear Menú</button>
-        </form>
-    </div>
-    
-    <div class="btn-container">
-        <a href="{% url 'listar_menu' %}" class="btn">Volver a Menús</a>
-    </div>
+ <main>
+        <section class="hero">
+            <img src="{% static 'image/pedidos.jpg' %}" alt="Imagen de pedidos" class="hero-image">
+            <h1>Cree un Menu</h1>
+            <div class="form-container">
+                <div class="form-column">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="id_nombre">Nombre</label>
+                            {{ form.nombre }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_estado">Estado</label>
+                            {{ form.estado }}
+                        </div>
+
+                        <button type="submit" name="crear_menu">Crear Menu</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
 
 </body>
 </html>
