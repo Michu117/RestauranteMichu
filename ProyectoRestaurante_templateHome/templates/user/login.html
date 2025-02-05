@@ -23,10 +23,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">INICIO</a></li>
-                <li><a href="#">MENÚ</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="#">RESERVACIONES</a></li>
-                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
                     <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>

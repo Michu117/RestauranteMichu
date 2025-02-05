@@ -15,13 +15,18 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">INICIO</a></li>
-                <li><a href="{% url 'listar_menu' %}">MENÚ</a></li>
-                <li><a href="#">RESERVACIONES</a></li>
-                <li><a href="#">PEDIDOS</a></li>
-                <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
-                <li><a href="#">INVENTARIO</a></li>
-                <li><a href="{% url 'estadistica' %}">ESTADÍSTICAS</a></li>
+                <li><a href="{% url 'home' %}">INICIO</a></li>
+                <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'listar_reservas' %}">RESERVACIONES</a></li>
+                    <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
+                    <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
+                    <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'convertir_divisa' %}">MONEDAS</a></li>
+                    <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
