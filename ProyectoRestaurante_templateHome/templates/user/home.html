@@ -43,7 +43,9 @@
             <img src="{% static 'image/home.jpg' %}" alt="Imagen de inicio" class="hero-image">
             <h1>COMIDA DE LA MEJOR CALIDAD</h1>
             <p>Disfruta de los sabores más exquisitos preparados con ingredientes frescos y de la más alta calidad. Nuestro equipo de chefs expertos te garantiza una experiencia culinaria inolvidable.</p>
-            <button>RESERVA UNA MESA</button>
+            <a href="{% url 'crear_reserva' %}">
+    <button>RESERVA UNA MESA</button>
+</a>
         </section>
     </main>
 
