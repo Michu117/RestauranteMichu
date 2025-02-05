@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from mesas.forms import CustomUserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import MesaForm
-from .models import Mesa
+from .models import Mesa, Cliente
 from django.contrib import messages
 from django.contrib.auth import login
 from django.urls import reverse_lazy
