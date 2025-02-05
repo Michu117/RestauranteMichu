@@ -18,7 +18,7 @@
             <span class="restaurant-name">Restaurante Michu</span>
         </div>
         <nav>
-             <ul>
+            <ul>
                 <li><a href="{% url 'home' %}">INICIO</a></li>
                 <li><a href="{% url 'gestionar_menu' %}">MENÚ</a></li>
                 {% if user.is_authenticated %}
@@ -26,6 +26,7 @@
                     <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
                     <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
                     <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'convertir_divisa' %}">MONEDAS</a></li>
                     <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
@@ -40,10 +41,8 @@
             <img src="{% static 'image/Menu.jpg' %}" alt="Imagen del Menú" class="hero-image">
             <h1>Descubre Nuestro Menú Exclusivo</h1>
             <p>Elige entre nuestras deliciosas opciones, elaboradas con ingredientes frescos y de alta calidad.</p>
-            <div class="btn-container">
-            <a href="{% url 'categories' %}" class="button">VER MENÚ</a>
-            <a href="{% url 'listar_menu' %}" class="button">Listar Menus</a>
-            </div>
+            <a href="{% url 'categories' %}">
+            <button>VER MENU</button>
         </section>
     </main>
 

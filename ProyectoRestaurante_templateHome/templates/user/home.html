@@ -29,6 +29,7 @@
                     <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
                     <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
                     <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'convertir_divisa' %}">MONEDAS</a></li>
                     <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
@@ -43,7 +44,9 @@
             <img src="{% static 'image/home.jpg' %}" alt="Imagen de inicio" class="hero-image">
             <h1>COMIDA DE LA MEJOR CALIDAD</h1>
             <p>Disfruta de los sabores más exquisitos preparados con ingredientes frescos y de la más alta calidad. Nuestro equipo de chefs expertos te garantiza una experiencia culinaria inolvidable.</p>
-            <button>RESERVA UNA MESA</button>
+            <a href="{% url 'register' %}">
+            <button>CREA UNA CUENTA</button>
+            </a>
         </section>
     </main>
 

@@ -24,6 +24,7 @@
                     <li><a href="{% url 'estadistica' %}">ESTADISTICAS</a></li>
                     <li><a href="{% url 'listar_mesas' %}">MESAS</a></li>
                     <li><a href="{% url 'gestionar_pedidos' %}">PEDIDOS</a></li>
+                    <li><a href="{% url 'convertir_divisa' %}">MONEDAS</a></li>
                     <li><a href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">INICIAR SESIÓN</a></li>
@@ -73,9 +74,9 @@
                 </tbody>
             </table>
         </div>
-    <div class="btn">
-        <a href="/crear_mesa/" >Nueva Mesa</a>
-    </div>
+        <a href="{% url 'crear_mesa' %}">
+        <button>AGREGAR</button>
+        </a>
 
     {% if inventarios.has_other_pages %}
     <div class="pagination">
