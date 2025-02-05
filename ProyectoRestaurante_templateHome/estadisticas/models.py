@@ -1,5 +1,4 @@
 from django.db import models
-from decimal import Decimal
 from datetime import date
 from facturacion.models import Factura, ItemFactura, Mesero
 from mesas.models import Mesa
@@ -17,7 +16,7 @@ class Estadistica(models.Model):
     mejor_mesero = models.CharField(max_length=50, blank=True, null=True)
     mesa_mas_usada = models.CharField(max_length=50, blank=True, null=True)
     producto_mas_vendido = models.CharField(max_length=50, blank=True, null=True)
-    ventas_totales = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    ventas_totales = models.FloatField(default=0.0)
 
     def __str__(self):
         return f"{self.titulo} ({self.fecha_inicio} - {self.fecha_fin})"
@@ -66,10 +65,7 @@ class Estadistica(models.Model):
     def calcular_ventas_totales(self):
         facturas = Factura.objects.filter(fecha__range=[self.fecha_inicio, self.fecha_fin])
         ventas_totales = facturas.aggregate(total=models.Sum('total'))['total']
-        if ventas_totales is None:
-            ventas_totales = Decimal('0.00')
-        return ventas_totales
-
+        return float(ventas_totales) if ventas_totales else 0.0
 
     def save(self, *args, **kwargs):
         # Realizar cálculos antes de guardar

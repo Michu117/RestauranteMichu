@@ -6,11 +6,14 @@ body {
     background-color: #f8f8f8;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .banner {
     height: 10px;
-    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     position: fixed;
     top: 0;
@@ -21,39 +24,36 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alinea todo al centro verticalmente */
-    padding: 15px 40px; /* Reduce un poco el padding superior e inferior */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
-    top: 10px; /* Debajo del banner */
+    top: 10px;
     left: 0;
     right: 0;
     z-index: 999;
-    height: 80px; /* Ajusta la altura del header */
+    height: 80px;
 }
 
-/* Ajustar logo */
 header .logo {
     display: flex;
-    align-items: center; /* Centra logo y texto */
+    height: 120px;
+    align-items: center;
 }
 
-/* Logo más grande y sin bordes redondeados */
 header .logo img {
-    height: 120px; /* Ajusta el tamaño del logo */
-    border-radius: 0; /* Sin bordes redondeados */
+    height: 120px;
+    border-radius: 0;
 }
 
-/* Alinear el texto con los botones */
 header .logo .restaurant-name {
     font-size: 24px;
     font-weight: 700;
-    color: white; /* Texto en blanco */
+    color: white;
     margin-left: 15px;
-    margin-top: 5px; /* Ajusta este valor si es necesario */
+    margin-top: 5px;
 }
 
-/* Navegación */
 nav ul {
     list-style: none;
     margin: 0;
@@ -77,15 +77,17 @@ nav ul li a:hover {
 }
 
 .hero {
-    margin-top: 5px;
     position: relative;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    flex-grow: 1;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
 }
+
 
 .hero-image {
     position: absolute;
@@ -93,17 +95,32 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* La imagen cubre toda la pantalla */
-    z-index: -1; /* La imagen se coloca detrás del contenido */
-    filter: brightness(0.6); /* Oscurece la imagen para mejorar la legibilidad */
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
     font-weight: 700;
-    margin-bottom: 20px;
-    margin-top: 150px;
+    margin-bottom: 0;
+    margin-top: 100px;
+}
+
+.hero h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .hero p {
@@ -111,7 +128,6 @@ nav ul li a:hover {
     max-width: 800px;
     margin-bottom: 30px;
 }
-
 
 .hero button {
     background-color: #e67e22;
@@ -122,33 +138,35 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 150px;
+    height: 50px;
 }
 
 .hero button:hover {
     background-color: #d35400;
+    width: 150px;
+    height: 50px;
 }
 
-
-/* Estilos del formulario */
 .form-container {
     width: 50%;
-    margin-bottom: 20px;
+    margin: 20px auto; /* Centrar horizontalmente */
     padding: 20px;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .form-container h2 {
-    color: white; /* Título del formulario en blanco */
-    text-align: center; /* Centrar el título */
+    color: white;
+    text-align: center;
     margin-bottom: 10px;
 }
 
 .form-container label {
     display: block;
     margin-bottom: 5px;
-    color: white; /* Etiquetas en blanco */
-    text-align: center; /* Centrar las etiquetas */
+    color: white;
+    text-align: center;
 }
 
 .form-container input[type="date"] {
@@ -158,12 +176,12 @@ nav ul li a:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: #fff; /* Fondo blanco para los inputs */
-    color: black; /* Letras negras */
+    background-color: #fff;
+    color: black;
 }
 
 .form-container button {
-    background-color: #e67e22; /* Naranja */
+    background-color: #e67e22;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -173,11 +191,12 @@ nav ul li a:hover {
 }
 
 .form-container button:hover {
-    background-color: #d35400; /* Naranja más oscuro al pasar el mouse */
+    background-color: #d35400;
 }
 
 .tabla-mesas {
-    width: 100%;
+    width: 80%; /* Ancho de la tabla */
+    margin: 20px auto; /* Centrar horizontalmente */
     border-collapse: collapse;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -185,7 +204,7 @@ nav ul li a:hover {
 .tabla-mesas th,
 .tabla-mesas td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
     background-color: #fff;
 }
@@ -195,17 +214,14 @@ nav ul li a:hover {
     color: white;
 }
 
-.tabla-mesas tbody tr td { /* Selecciona las celdas de las filas */
-    color: black; /* Texto negro */
+.tabla-mesas tbody tr td {
+    color: black;
 }
 
-/* Estilos del gráfico */
 .chart-container {
-    display: flex;
-    justify-content: space-between; /* Distribuye el espacio entre la tabla y el gráfico */
-    gap: 40px; /* Espacio entre la tabla y el gráfico */
-    align-items: flex-start;
-    width: 45%;
+    width: 80%; /* Ancho del gráfico */
+    height: 400px;
+    margin: 20px auto; /* Centrar horizontalmente */
 }
 
 .chart-title {
@@ -215,15 +231,46 @@ nav ul li a:hover {
     color: white;
 }
 
-#ventasChart, #chartMesas{
+
+#chartMesas {
     width: 100%;
-    height: 300px;
+    height: 100%;
+}
+#ventasChart{
+    width: 100%;
+    height: 100%;
 }
 
-.container {
-    display: flex; /* Para que la tabla y el gráfico estén uno al lado del otro */
-    justify-content: space-between; /* Distribuye el espacio entre la tabla y el gráfico */
-    gap: 40px;
-    align-items: flex-start;
 
+.form-container button {
+    background-color: #e67e22;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.btn-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #ff6600;}

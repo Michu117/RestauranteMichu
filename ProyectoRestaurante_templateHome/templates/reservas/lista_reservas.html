@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Reservas</title>
-    <link rel="stylesheet" href="{% static 'css/reservas.css' %}?v=1.0">
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}?v=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -37,18 +37,15 @@
             <img src="{% static 'image/mesas.jpg' %}" alt="Imagen de Reservas" class="hero-image">
             <h1>Listado de Reservas</h1>
             <p>Consulta las reservas del restaurante durante un periodo de tiempo específico.</p>
-
-            <h2>Reservas</h2>
             <div class="tabla-container">
                 <table class="tabla-mesas">
                     <thead>
                         <tr>
                             <th>Cliente</th>
                             <th>Mesa</th>
-                            <th>Cantidad de Personas</th>
                             <th>Fecha</th>
-                            <th>Estado</th>
-                            <th>Cancelar</th>
+                            <th>Hora de Inicio</th>
+                            <th>Hora de Fin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,16 +53,13 @@
                             <tr>
                                 <td>{{ reserva.cliente }}</td>
                                 <td>{{ reserva.mesa }}</td>
-                                <td>{{ reserva.cantidad_personas }}</td>
-                                <td>{{ reserva.fecha_reserva }}</td>
-                                <td>{{ reserva.estado }}</td>
-                                <td class="btn">
-                                    <a href="{% url 'cancelar_reserva' reserva.pk %}" onclick="return confirm('¿Estás seguro de cancelar esta reserva?');"><i class="fas fa-trash-alt"></i> Cancelar</a>
-                                </td>
+                                <td>{{ reserva.fecha }}</td>
+                                <td>{{ reserva.hora_inicio }}</td>
+                                <td>{{ reserva.hora_fin }}</td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td colspan="8">No hay reservas registradas.</td>
+                                <td colspan="5">No hay reservas registradas.</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -73,7 +67,6 @@
             </div>
 
             <div class="btn-container">
-            <a href="{% url 'listar_menu' %}" class="btn">Volver a Menús</a>
             <a href="{% url 'crear_reserva' %}" class="btn">Nueva Reserva</a>
             </div>
         </section>

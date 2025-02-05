@@ -1,0 +1,281 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.banner {
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Negro semitransparente */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea todo al centro verticalmente */
+    padding: 15px 40px; /* Reduce un poco el padding superior e inferior */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    position: fixed;
+    top: 10px; /* Debajo del banner */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 80px; /* Ajusta la altura del header */
+}
+
+/* Ajustar logo */
+header .logo {
+    display: flex;
+    align-items: center; /* Centra logo y texto */
+}
+
+/* Logo más grande y sin bordes redondeados */
+header .logo img {
+    height: 120px; /* Ajusta el tamaño del logo */
+    border-radius: 0; /* Sin bordes redondeados */
+}
+
+/* Alinear el texto con los botones */
+header .logo .restaurant-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: white; /* Texto en blanco */
+    margin-left: 15px;
+    margin-top: 5px; /* Ajusta este valor si es necesario */
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Sección Hero ocupa toda la pantalla */
+.hero {
+    position: relative;
+    height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Texto en blanco */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre toda la pantalla */
+    z-index: -1; /* La imagen se coloca detrás del contenido */
+    filter: brightness(0.6); /* Oscurece la imagen para mejorar la legibilidad */
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-top: 120px; /* Evita que el título esté tapado por el header */
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 0;
+}
+
+.hero button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #d35400;
+}
+
+/* Estilos para los formularios */
+.form-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente los elementos */
+}
+
+.form-column h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+form label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: white;
+    display: block; /* Las etiquetas ocupan toda la línea */
+    text-align: left;
+    width: 100%; /* Ocupa todo el ancho */
+    margin: 0 0 8px; /* Márgenes consistentes */
+}
+
+form input,
+form select,
+form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: calc(100% - 20px); /* Ocupa todo el ancho disponible */
+    box-sizing: border-box;
+    margin: 0 0 10px; /* Márgenes consistentes */
+}
+
+/* Estilos para inputs de fecha y hora */
+form input[type="date"],
+form input[type="time"] {
+    width: calc(100% - 20px);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #e67e22;
+    outline: none;
+}
+
+.two-columns {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten a varias líneas */
+    gap: 20px; /* Espacio entre columnas */
+    width: calc(100% + 20px); /* Ancho para compensar el gap */
+    margin: 0 -10px 20px; /* Margen para alinear con otros elementos */
+}
+
+.column {
+    flex: 1; /* Cada columna ocupa el mismo espacio */
+    box-sizing: border-box; /* Incluir padding y border en el ancho */
+    padding: 0 10px; /* Añadir padding a cada columna */
+}
+
+.column label {
+    width: calc(100% - 20px); /* Ancho completo dentro de la columna */
+    margin: 0 0 8px; /* Márgenes consistentes */
+}
+
+.column input,
+.column select,
+.column textarea {
+    width: calc(100% - 20px); /* Ancho completo dentro de la columna */
+    margin: 0; /* Eliminar márgenes innecesarios */
+}
+
+
+.time-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: calc(100% - 20px);
+    margin: 0 10px 20px; /* Margen inferior */
+}
+
+.time-container label {
+    margin-bottom: 0;
+    width: auto; /* Ancho automático para las etiquetas */
+}
+
+.time-container input {
+    margin-bottom: 0;
+    flex: 1; /* Los inputs de hora ocupan el espacio disponible */
+}
+
+/* Botón del formulario */
+form button {
+    align-self: center; /* Center the button */
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add some top margin */
+}
+form button:hover {
+    background-color: #d35400;
+}
+
+.btn, .btn-secondary {  /* Aplica estilos a ambas clases */
+    align-self: center;
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Convierte el enlace en un elemento de bloque */
+}
+
+.btn:hover, .btn-secondary:hover {
+    background-color: #d35400;
+}

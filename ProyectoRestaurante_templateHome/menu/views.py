@@ -58,7 +58,7 @@ def crear_menu(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Menú creado exitosamente.")
-            return redirect('listar_menu')  # Aquí rediriges a la lista de menús, sin necesidad de 'pk'
+            return redirect('listar_menu')
     else:
         form = MenuForm()
 

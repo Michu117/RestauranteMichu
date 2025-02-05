@@ -4,13 +4,12 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.models import User
-from .models import Reserva, Mesa, Cliente
-
+from mesas.models import Mesa, Reserva
 
 class MesaForm(forms.ModelForm):
     class Meta:
         model = Mesa
-        fields = ['codigo', 'ubicacion', 'numero_asientos', 'cantidad_uso', 'estado']
+        fields = ['codigo', 'ubicacion', 'numero_asientos']
 
 class RegistroClienteForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
@@ -38,31 +37,34 @@ class RegistroClienteForm(forms.ModelForm):
 class ReservaForm(forms.ModelForm):
     class Meta:
         model = Reserva
-        fields = ['cliente', 'mesa', 'cantidad_personas', 'fecha_reserva']  # Eliminamos horario
-        widgets = {
-            'cliente': forms.Select(attrs={'class': 'form-control'}),
-            'mesa': forms.Select(attrs={'class': 'form-control'}),
-            'cantidad_personas': forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
-            'fecha_reserva': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-        }
+        fields = ['mesa', 'cliente', 'fecha', 'hora_inicio', 'hora_fin']
+
+    widgets = {
+        'fecha': forms.DateInput(attrs={'type': 'date'}),  # Selector de fecha (calendario)
+        'hora_inicio': forms.TimeInput(attrs={'type': 'time'}),  # Selector de hora (reloj)
+        'hora_fin': forms.TimeInput(attrs={'type': 'time'}),  # Selector de hora (reloj)
+    }
 
     def clean(self):
         cleaned_data = super().clean()
-        mesa = cleaned_data.get('mesa')
-        cantidad_personas = cleaned_data.get('cantidad_personas')
-        fecha_reserva = cleaned_data.get('fecha_reserva')
+        mesa = cleaned_data.get("mesa")
+        fecha = cleaned_data.get("fecha")
+        hora_inicio = cleaned_data.get("hora_inicio")
+        hora_fin = cleaned_data.get("hora_fin")
 
-        # Verifica si la mesa está disponible para la fecha seleccionada
-        if mesa:
-            if mesa.estado != "LIBRE":
-                raise forms.ValidationError(f"La mesa {mesa.codigo} no está disponible para reservas.")
-            if cantidad_personas and cantidad_personas > mesa.numero_asientos:
-                raise forms.ValidationError(
-                    f"La mesa {mesa.codigo} solo tiene capacidad para {mesa.numero_asientos} personas.")
+        # Validar que la hora de inicio sea antes que la hora de fin
+        if hora_inicio >= hora_fin:
+            raise forms.ValidationError("La hora de inicio debe ser antes que la hora de fin.")
 
-            # Verifica la disponibilidad de la mesa para esa fecha
-            if not Reserva().verificar_disponibilidad(mesa, fecha_reserva):
-                raise forms.ValidationError("La mesa no está disponible para la fecha seleccionada.")
+        # Validar si ya existe una reserva para la misma mesa y hora
+        reservas_conflictivas = Reserva.objects.filter(
+            mesa=mesa,
+            fecha=fecha
+        ).exclude(id=self.instance.id)  # Excluir la reserva actual si ya existe
+
+        for reserva in reservas_conflictivas:
+            if hora_inicio < reserva.hora_fin and hora_fin > reserva.hora_inicio:
+                raise forms.ValidationError(f"La mesa {mesa.codigo} ya está reservada en ese horario.")
 
         return cleaned_data
 

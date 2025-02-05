@@ -1,77 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas de Productos</title>
+    <title>Estadísticas de Mesas - Restaurante Michu</title>
     <script src="{% static 'js/chart.min.js' %}"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .tabla-productos {
-            width: 45%;
-            border-collapse: collapse;
-        }
-        .tabla-productos th, .tabla-productos td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .tabla-productos th {
-            background-color: #f4f4f4;
-        }
-        .chart-container {
-            width: 40%;
-        }
-        #chartProductos {
-            width: 100%;
-            height: 250px; /* Reduce la altura del gráfico */
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/estadisticas.css' %}?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Estadísticas de Productos</h1>
-    <form method="get">
-        <label for="fecha_inicio">Fecha Inicio:</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
-        <label for="fecha_fin">Fecha Fin:</label>
-        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
-        <button type="submit">Generar</button>
-    </form>
-
-    <h2>Productos más vendidos</h2>
-    <div class="container">
-        <!-- Tabla de productos -->
-        <table class="tabla-productos">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad Vendida</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for producto in productos %}
-                <tr>
-                    <td>{{ producto.producto__nombre }}</td> <!-- Producto -->
-                    <td>{{ producto.total_vendido }}</td> <!-- Cantidad vendida -->
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <!-- Contenedor del gráfico -->
-        <div class="chart-container">
-            <canvas id="chartProductos"></canvas>
+    <div class="banner"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'image/Logo.jpg.png' %}" alt="Logo Restaurante Michu">
+            <span class="restaurant-name">Restaurante Michu</span>
         </div>
-    </div>
+         <nav>
+            <ul>
+                <li><a href="{% url 'estadistica' %}">Estadisticas</a></li>
+                <li><a href="{% url 'estadisticas_mesas' %}">Mesas</a></li>
+                <li><a href="{% url 'estadisticas_meseros' %}">Meseros</a></li>
+                <li><a href="{% url 'estadisticas_productos' %}">Productos</a></li>
+                <li><a href="{% url 'ventas_totales' %}">Ventas Totales</a></li>
+                <li><a href="{% url 'reportes' %}">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+     <main>
+        <section class="hero">
+        <img src="{% static 'image/productos.jpg' %}" alt="Imagen del Menú" class="hero-image">
+        <h1>Estadísticas de Productos</h1>
+        <p>Consulta los productos mas vendidos del restaurante durante un periodo de tiempo específico.</p>
+        <form method="get">
+            <label for="fecha_inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+            <label for="fecha_fin">Fecha Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+            <button type="submit">Generar</button>
+        </form>
+
+        <h2>Productos más vendidos</h2>
+        <div class="container">
+            <table class="tabla-mesas">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad Vendida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto.producto__nombre }}</td> <!-- Producto -->
+                        <td>{{ producto.total_vendido }}</td> <!-- Cantidad vendida -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <canvas id="chartProductos"></canvas>
+            </div>
+        </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -107,13 +98,16 @@
                     maintainAspectRatio: false, /* Para controlar manualmente el tamaño */
                     plugins: {
                         title: {
-                            display: true,
-                            text: 'Productos más vendidos'
-                        }
+                                display: true,
+                                text: 'Productos más vendidos',
+                                font: {size: 22, color: 'white'}
+                            },
                     }
                 }
             });
         });
     </script>
+    </section>
+ </main>
 </body>
 </html>
